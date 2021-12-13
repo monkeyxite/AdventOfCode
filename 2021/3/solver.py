@@ -1,42 +1,19 @@
 def main(fn):
     with open(fn) as f:
         l = f.read().splitlines()
-    ll = [i.split() for i in l]
-    for i in ll:
-        if i[0] == "forward":
-            o[0] += int(i[1])
-        elif i[0] == "down":
-            o[1] += int(i[1])
-        elif i[0] == "up":
-            o[1] -= int(i[1])
-        else:
-            raise AssertionError(f"Unexpected action {i[0]} detected!")
-    return o[0] * o[1]
-
+    ll = [list(i) for i in l]
+    gamma,epsilon = [],[]
+    for i in range(len(ll[0])):
+        gamma.append( [int(q[i]) for q in ll])
+    g = ["1" if i.count(1)>=i.count(0) else "0" for i in gamma ]
+    e = ["0" if i.count(1)>=i.count(0) else "1" for i in gamma ]
+    return int("".join(g), 2) * int("".join(e),2)
 
 def main2(fn):
-    with open(fn) as f:
-        l = f.read().splitlines()
-    ll = [i.split() for i in l]
-    for i in ll:
-        if i[0] == "forward":
-            o[0] += int(i[1])
-            o[1] += o[2] * int(i[1])
-        elif i[0] == "down":
-            # o[1] += int(i[1])
-            o[2] += int(i[1])
-        elif i[0] == "up":
-            # o[1] -= int(i[1])
-            o[2] -= int(i[1])
-        else:
-            raise AssertionError(f"Unexpected action {i[0]} detected!")
-    return o[0] * o[1]
-
+    pass 
 
 if __name__ == "__main__":
     o = [0, 0, 0]  # x(horizontal), depth, aim
     fn = input("pls fill in filename to analysis:\n")
     result = main(fn)
-    o = [0, 0, 0]  # x(horizontal), depth, aim
-    result2 = main2(fn)
-    print(f"the results is: \n  part 1 {result}; part2 {result2}")
+    print(f"the results is: \n  part 1 {result}; part2 {result}")
