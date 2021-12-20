@@ -10,18 +10,29 @@ def main(fn):
     for i in boards:
         b = Board(i.strip().split())
         bl.append(b)
-    pprint(bl)
-    pprint(num)
+    for i in num:
+        for b in bl:
+            b.match(i)
+            pprint(b.m)
+            b.win()
     return num
 
 
 class Board:
     """docstring for Board."""
+
     def __init__(self, num_list):
         self.num = [int(i) for i in num_list]
+        self.m = []
 
     def __repr__(self):
         return str(self.num)
+
+    def match(self, n):
+        self.m.append(self.num.index(n))
+
+    def win(self):
+        return False
 
 
 def main2(fn):
