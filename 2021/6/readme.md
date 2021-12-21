@@ -51,3 +51,14 @@ Each day, a `0` becomes a `6` and adds a new `8` to the end of the list, while e
 In this example, after 18 days, there are a total of `26` fish. After 80 days, there would be a total of `_5934_`.
 
 Find a way to simulate lanternfish. _How many lanternfish would there be after 80 days?_
+
+### Answer
+389726
+
+## Part Two 
+
+Suppose the lanternfish live forever and have unlimited food and space. Would they take over the entire ocean?
+
+After 256 days in the example above, there would be a total of `_26984457539_` lanternfish!
+
+_How many lanternfish would there be after 256 days?_
