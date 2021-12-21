@@ -6,7 +6,7 @@ def main(fl, days):
             if nf:
                 fish_list.append(nf)
         # print(f"after d{i+1}: {fish_list}")
-    return fl
+    return len(fl)
 
 
 def main2(fl, days):
@@ -16,11 +16,10 @@ def main2(fl, days):
     fc = Counter(fish_list)
     print(fc)
     for i in range(days):
-        new_fc = {}
-        for k, v in fc.items():
-            new_fc[k - 1] = v
-
-    return 10
+        new_fc = Counter({8: fc[0], 6: fc[0]})
+        new_fc.update({k - 1: v for k, v in fc.items() if k > 0})
+        fc = new_fc
+    return sum(fc.values())
 
 
 class Fish:
@@ -52,13 +51,15 @@ if __name__ == "__main__":
 
     days_list = lines[0].split(",")
     fish_list = [Fish(int(i)) for i in days_list]
-    days = 18
+    days = 256
     # print(fish_list)
 
-    result = main2(fish_list, days)
+    result1 = main(fish_list, 80)
+    fish_list = [Fish(int(i)) for i in days_list]
+    result2 = main2(fish_list, days)
     # if days < 80:
     #     result = main(fish_list, days)
     # else:
     #     result = main2(fish_list, days)
     # result2 = main2(fn)
-    print(f"the results is: \n  part 1 {result}")
+    print(f"the results is: \n  part 1 {result1}; part2 {result2}")
