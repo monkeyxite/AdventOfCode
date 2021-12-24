@@ -22,24 +22,24 @@ def main2(c):
             low_pt.append(xy)
 
     for xy in low_pt:
-        area = 1
-        result[xy] = find_area(xy, coord, area, passed_pt)
-    print(result)
-    return result
+        passed_pt = []
+        find_area(xy, coord, passed_pt)
+        result[xy] = len(passed_pt)
+    result = sorted(result.values())
+
+    return result[-1] * result[-2] * result[-3]
 
 
-def find_area(xy, c, a, passed):
-    area = a
-    passed_pt = passed.append(xy)
-    coord = defaultdict(lambda: 9999, c)
+def find_area(xy, c, passed_pt):
+    coord = c
+    if xy not in passed_pt:
+        passed_pt.append(xy)
     for adj in find_ajancent(xy):
         if coord[adj] < 9 and adj not in passed_pt:
-            area += 1
             passed_pt.append(adj)
-            # area += find_area(adj, coord, area, passed_pt)
+            find_area(adj, coord, passed_pt)
         else:
-            break
-    return area
+            pass
 
 
 def find_ajancent(xy):
@@ -65,4 +65,4 @@ if __name__ == "__main__":
     result = main(coord)
     result2 = main2(coord)
     # result2 = main2(total, sources)
-    print(f"the results is: \n  part 1 {result}; part 2 {result}")
+    print(f"the results is: \n  part 1 {result}; part 2 {result2}")
