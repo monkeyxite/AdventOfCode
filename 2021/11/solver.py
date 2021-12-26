@@ -3,15 +3,19 @@ from collections import defaultdict
 
 
 def main(c):
-    step = 100
+    step = 1000
     # coord = defaultdict(lambda: 0, c)
     coord = c
     print("intial status")
     print(coord.values())
-    print("\n".join([
-        "".join(list(map(str, coord.values()))[i * 10:i * 10 + 10])
-        for i in range(10)
-    ]))
+    print(
+        "\n".join(
+            [
+                "".join(list(map(str, coord.values()))[i * 10 : i * 10 + 10])
+                for i in range(10)
+            ]
+        )
+    )
 
     num = 0
     for i in range(1, step + 1, 1):
@@ -36,18 +40,26 @@ def main(c):
                     coord[others] += 1
                     if coord[others] > 9:
                         flashing.append(others)
-                        # print(f" find {others} should flash in step{i}")
 
         print(f"step{i}:")
-        print("\n".join([
-            "".join(list(map(str, coord.values()))[i * 10:i * 10 + 10])
-            for i in range(10)
-        ]))
-    return num
+        print(
+            "\n".join(
+                [
+                    "".join(list(map(str, coord.values()))[i * 10 : i * 10 + 10])
+                    for i in range(10)
+                ]
+            )
+        )
+        if i == 100:
+            result = num
+        if all(v == 0 for v in coord.values()):
+            result2 = i
+            break
+        else:
+            result2 = False
+            # print(f" find {others} should flash in step{i}")
 
-
-def main2(c):
-    pass
+    return result, result2
 
 
 # generator with adj pt including 45d
@@ -70,6 +82,6 @@ if __name__ == "__main__":
         for x, num in enumerate(line):
             coord[(x, y)] = int(num)
 
-    result = main(coord)
+    result, result2 = main(coord)
     # result2 = main2(coord)
-    print(f"the results is: \n  part 1 {result}; part 2 {result}")
+    print(f"the results is: \n  part 1 {result}; part 2 {result2}")

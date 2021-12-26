@@ -345,3 +345,7 @@ In the example above, the first time all octopuses flash simultaneously is step 
     0000000000
 
 If you can calculate the exact moments when the octopuses will all flash simultaneously, you should be able to navigate through the cavern. _What is the first step during which all octopuses flash?_
+
+
+###Answer 
+371
