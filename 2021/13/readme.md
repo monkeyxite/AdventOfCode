@@ -111,3 +111,13 @@ _How many dots are visible after completing just the first fold instruction on y
 
 ### Answer
 631
+
+
+## Part Two ---
+
+Finish folding the transparent paper according to the instructions. The manual says the code is always _eight capital letters_.
+
+_What code do you use to activate the infrared thermal imaging camera system?_
+
+### Answer
+EFLFJGRF
