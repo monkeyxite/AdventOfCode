@@ -29,8 +29,18 @@ def find_ajancent(xy):
     yield xy[0], xy[1] - 1
 
 
-def main2():
-    pass
+def main2(coord):
+    scale = max(coord)
+    x_len, y_len = scale[0] + 1, scale[1] + 1
+    expanded = {(x, y): 0 for x in range(x_len * 5) for y in range(y_len * 5)}
+    # print(expanded)
+    for x, y in expanded.keys():
+        distance = x // x_len + y // y_len
+        raw_value = coord[(x % x_len, y % y_len)] + distance
+        value = raw_value % 9 or raw_value
+        expanded[(x, y)] = value
+    # print(expanded)
+    return main(expanded)
 
 
 if __name__ == "__main__":
@@ -46,7 +56,7 @@ if __name__ == "__main__":
         for x, num in enumerate(line):
             coord[(x, y)] = int(num)
 
-    print(coord, max(coord))
+    # print(coord, max(coord))
     result = main(coord)
-    # result2 = main()
-    print(f"the results is: \n  part 1 {result}; part 2 {result}")
+    result2 = main2(coord)
+    print(f"the results is: \n  part 1 {result}; part 2 {result2}")

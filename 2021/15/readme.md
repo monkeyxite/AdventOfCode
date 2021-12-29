@@ -161,3 +161,6 @@ Equipped with the full map, you can now find a path from the top left corner to 
 The total risk of this path is `_315_` (the starting position is still never entered, so its risk is not counted).
 
 Using the full map, _what is the lowest total risk of any path from the top left to the bottom right?_
+
+### Answer
+2897
