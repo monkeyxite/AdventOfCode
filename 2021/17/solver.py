@@ -2,18 +2,29 @@ import argparse
 
 
 def main():
-    guess_v_range = ((0, int(x_max)), (int(y_min), -int(y_min)))
+    guess_v_range = ((0, int(x_min)), (int(y_min), -int(y_min)))
     print(guess_v_range)
     result = 0
     for i in range(guess_v_range[0][0], guess_v_range[0][1]):
         for q in range(guess_v_range[1][0], guess_v_range[1][1]):
             pos = start
             v = [i, q]
+            print(f"{v}")
+            high = 0
             while True:
-                new_pos = (pos[0] + i, pos[1] + q)
+                new_pos = (pos[0] + v[0], pos[1] + v[1])
                 v = v_changing(v)
-
-    pass
+                high = new_pos[1] if new_pos[1] > high else high
+                # print(f"new high is {high}, {new_pos}")
+                if new_pos[0] in target[0] and new_pos[1] in target[1]:
+                    print(f"hit target via {new_pos} with {high} @ {v}")
+                    result = high if high > result else result
+                    break
+                elif new_pos[0] > int(x_max) or new_pos[1] < int(y_min):
+                    break
+                else:
+                    continue
+    return result
 
 
 def main2():
